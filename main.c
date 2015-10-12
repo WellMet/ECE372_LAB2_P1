@@ -36,9 +36,12 @@ int main(void)
     initTimer2();
     initKeypad();
     initLCD();
+    moveCursorLCD(0,0);
+    //printStringLCD("WORK PLS!");
     
     x = 0;
     y = 0;
+    state = scan;
 
     while(1)
     {
@@ -90,7 +93,7 @@ void __ISR(_CHANGE_NOTICE_VECTOR, IPL3SRS) _CNInterrupt(void){
     int dummycol3 = COL3;
     
     //once the button is released enter the write state
-    if(COL1 == 0 || COL2 == 0 || COL3 == 0){
+    if((COL1 == 0 || COL2 == 0 || COL3 == 0) && state == scan){
         state = waitRelease;
     }
 }

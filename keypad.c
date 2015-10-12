@@ -50,31 +50,43 @@ void initKeypad(void){
  * the key that is pressed.
  */
 char scanKeypad(void){
-    char key = -1;
+    char key = '-';
     
     //scan row 1
-    ROW1 = 1, ROW2 = 0, ROW3 = 0, ROW4 = 0;
-    if(COL1 == 0) key = 1;
-    if(COL2 == 0) key = 2;
-    if(COL3 == 0) key = 3;
+    ROW1 = 0, ROW2 = 1, ROW3 = 1, ROW4 = 1;
+    if(COL1 == 0) 
+        key = '1';
+    if(COL2 == 0) 
+        key = '2';
+    if(COL3 == 0) 
+        key = '3';
     
     //scan row 2
-    ROW1 = 0, ROW2 = 1, ROW3 = 0, ROW4 = 0;
-    if(COL1 == 0) key = 4;
-    if(COL2 == 0) key = 5;
-    if(COL3 == 0) key = 6;
+    ROW1 = 1, ROW2 = 0, ROW3 = 1, ROW4 = 1;
+    if(COL1 == 0) 
+        key = '4';
+    if(COL2 == 0) 
+        key = '5';
+    if(COL3 == 0) 
+        key = '6';
     
     //scan row 3
-    ROW1 = 0, ROW2 = 0, ROW3 = 1, ROW4 = 0;
-    if(COL1 == 0) key = 7;
-    if(COL2 == 0) key = 8;
-    if(COL3 == 0) key = 9;
+    ROW1 = 1, ROW2 = 1, ROW3 = 0, ROW4 = 1;
+    if(COL1 == 0) 
+        key = '7';
+    if(COL2 == 0) 
+        key = '8';
+    if(COL3 == 0) 
+        key = '9';
  
     //scan row 4
-    ROW1 = 0, ROW2 = 0, ROW3 = 0, ROW4 = 1;
-    if(COL1 == 0) key = '*'; //10 means *
-    if(COL2 == 0) key = 0; //
-    if(COL3 == 0) key = '#'; //11 means #
+    ROW1 = 1, ROW2 = 1, ROW3 = 1, ROW4 = 0;
+    if(COL1 == 0) 
+        key = '*'; 
+    if(COL2 == 0) 
+        key = '0';
+    if(COL3 == 0) 
+        key = '#';
     
     return key;
 }
