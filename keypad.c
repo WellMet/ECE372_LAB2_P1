@@ -8,22 +8,24 @@
 void initKeypad(void){
     //set row pins as output
     TRISGbits.TRISG0 = OUTPUT;
-    TRISFbits.TRISF1 = OUTPUT;
+    TRISDbits.TRISD9 = OUTPUT;
     TRISDbits.TRISD12 = OUTPUT;
     TRISDbits.TRISD6 = OUTPUT;
     
     //set col pins as input
-    TRISBbits.TRISB4 = INPUT;
-    TRISBbits.TRISB2 = INPUT;
-    TRISBbits.TRISB0 = INPUT;
+    TRISBbits.TRISB10 = INPUT;
+    TRISBbits.TRISB12 = INPUT;
+    TRISBbits.TRISB14 = INPUT;
     
-    ANSELBbits.ANSB4 = 1;
-    ANSELBbits.ANSB2 = 1;
-    ANSELBbits.ANSB0 = 1;
-    
+//    ANSELBbits.ANSB4 = 1;
+//    ANSELBbits.ANSB2 = 1;
+//    ANSELBbits.ANSB0 = 1;
+    ANSELBbits.ANSB12 = 0;
+    ANSELBbits.ANSB10 = 0;
+    ANSELBbits.ANSB14 = 0;
     //enable ODC for the output pins
     ODCGbits.ODCG0 = 1;
-    ODCFbits.ODCF1 = 1;
+    ODCDbits.ODCD9 = 1;
     ODCDbits.ODCD12 = 1;
     ODCDbits.ODCD6 = 1;
     
@@ -35,11 +37,12 @@ void initKeypad(void){
     
     //enable change notifications for the inputs
     CNCONBbits.ON=1;       // Turn on CN device
-    CNENBbits.CNIEB4 = 1;       // Enable CN interrupt for pin
-    CNENBbits.CNIEB2 = 1;
-    CNENBbits.CNIEB0 = 1;
+    CNENBbits.CNIEB10 = 1;       // Enable CN interrupt for pin
+    CNENBbits.CNIEB12 = 1;
+    CNENBbits.CNIEB14 = 1;
     IEC1bits.CNBIE = 1;
     IFS1bits.CNBIF = 0;
+    IPC8bits.CNIP = 7;
     
 }
 
@@ -50,43 +53,43 @@ void initKeypad(void){
  * the key that is pressed.
  */
 char scanKeypad(void){
-    char key = '-';
+    char key = -1;
     
     //scan row 1
     ROW1 = 0, ROW2 = 1, ROW3 = 1, ROW4 = 1;
     if(COL1 == 0) 
-        key = '1';
+        return '1';
     if(COL2 == 0) 
-        key = '2';
+        return '2';
     if(COL3 == 0) 
-        key = '3';
+        return '3';
     
     //scan row 2
     ROW1 = 1, ROW2 = 0, ROW3 = 1, ROW4 = 1;
     if(COL1 == 0) 
-        key = '4';
+        return '4';
     if(COL2 == 0) 
-        key = '5';
+        return '5';
     if(COL3 == 0) 
-        key = '6';
+        return '6';
     
     //scan row 3
     ROW1 = 1, ROW2 = 1, ROW3 = 0, ROW4 = 1;
     if(COL1 == 0) 
-        key = '7';
+        return '7';
     if(COL2 == 0) 
-        key = '8';
+        return '8';
     if(COL3 == 0) 
-        key = '9';
+        return '9';
  
     //scan row 4
     ROW1 = 1, ROW2 = 1, ROW3 = 1, ROW4 = 0;
     if(COL1 == 0) 
-        key = '*'; 
+        return '*'; 
     if(COL2 == 0) 
-        key = '0';
+        return '0';
     if(COL3 == 0) 
-        key = '#';
+        return '#';
     
     return key;
 }

@@ -15,12 +15,13 @@ char scanKeypad(void);
 #define OUTPUT 0
 #define INPUT 1
 #define ROW1 LATGbits.LATG0
-#define ROW2 LATFbits.LATF1
+#define ROW2 LATDbits.LATD6
 #define ROW3 LATDbits.LATD12
-#define ROW4 LATDbits.LATD6
-#define COL1 PORTBbits.RB4
-#define COL2 PORTBbits.RB2
-#define COL3 PORTBbits.RB0
+#define ROW4 LATDbits.LATD9
+
+#define COL1 PORTBbits.RB12
+#define COL2 PORTBbits.RB10
+#define COL3 PORTBbits.RB14
 
 #endif	/* KEYPAD_H */
 
