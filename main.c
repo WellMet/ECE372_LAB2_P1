@@ -13,9 +13,7 @@
 #include "keypad.h"
 #include "timer.h"
 #include "config.h"
-#include "leds.h"
 #include "interrupt.h"
-#include "switch.h"
 #define delay5 5 //delay 5ms debounce 
 #define PRESS 0
 #define RELEASE 1
@@ -94,8 +92,7 @@ int main(void)
 }
 
 void __ISR(_CHANGE_NOTICE_VECTOR, IPL7SRS) _CNInterrupt(void){
-//    //TODO: Implement the interrupt to capture the press of the button
-//  
+//implementation of the change notice ISR.  Sends the state machine into debounce modes
     IFS1bits.CNBIF = 0;
     
     int dummycol1 = COL1;

@@ -33,13 +33,6 @@
 #define LCD_WRITE_DATA   1
 #define LCD_CONTROL_DATA 0
 
-/* This function should take in a two-byte word and writes either the lower or upper
- * byte to the last four bits of LATB. Additionally, according to the LCD data sheet
- * It should set LCD_RS and LCD_E with the appropriate values and delays.
- * After these commands are issued, there should be a delay.
- * The command type is a simplification. From the data sheet, the RS is '1'
- * when you are simply writing a character. Otherwise, RS is '0'.
- */
 void writeFourBits(unsigned char word, unsigned int commandType, unsigned int delayAfter, unsigned int lower) {
     //TODO:
     if (lower == 0) {

@@ -2,9 +2,6 @@
 #include "keypad.h"
 #include "timer.h"
 
-/* Initialize the rows as ODC outputs and the columns as inputs with pull-up
- * resistors. Don't forget about other considerations...
- */
 void initKeypad(void){
     //set row pins as output
     TRISGbits.TRISG0 = OUTPUT;
@@ -17,12 +14,11 @@ void initKeypad(void){
     TRISBbits.TRISB12 = INPUT;
     TRISBbits.TRISB14 = INPUT;
     
-//    ANSELBbits.ANSB4 = 1;
-//    ANSELBbits.ANSB2 = 1;
-//    ANSELBbits.ANSB0 = 1;
+	//enable digital on input pins
     ANSELBbits.ANSB12 = 0;
     ANSELBbits.ANSB10 = 0;
     ANSELBbits.ANSB14 = 0;
+
     //enable ODC for the output pins
     ODCGbits.ODCG0 = 1;
     ODCDbits.ODCD9 = 1;
@@ -46,12 +42,7 @@ void initKeypad(void){
     
 }
 
-/* This function will be called AFTER you have determined that someone pressed
- * SOME key. This function is to figure out WHICH key has been pressed.
- * This function should return -1 if more than one key is pressed or if
- * no key is pressed at all. Otherwise, it should return the ASCII character of
- * the key that is pressed.
- */
+//called in the scan state.  Will check each row individually untill the pressed button is found
 char scanKeypad(void){
     char key = -1;
     
